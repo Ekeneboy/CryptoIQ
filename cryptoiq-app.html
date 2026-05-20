@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CryptoIQ App — Download for Android & iOS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0b0f17;
+  --bg2:#0f141f;
+  --bg3:#141a28;
+  --coral:#ff725e;
+  --coral2:#ff9a8b;
+  --green:#22c55e;
+  --white:#f2f5ff;
+  --muted:#8892aa;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,114,94,0.2);
+  --glass:rgba(255,255,255,0.04);
+  --glow:0 0 40px rgba(255,114,94,0.15);
+  --font:'Outfit',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--white);font-family:var(--font);overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:rgba(255,114,94,0.3);border-radius:2px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:rgba(11,15,23,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-in{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-img{width:36px;height:36px;border-radius:10px;overflow:hidden;flex-shrink:0;}
+.logo-img img{width:100%;height:100%;object-fit:cover;}
+.logo-text{font-weight:800;font-size:19px;letter-spacing:-.02em;}
+.logo-text span{color:var(--coral);}
+.nav-pill{display:flex;align-items:center;gap:6px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25);border-radius:100px;padding:5px 13px;font-family:var(--mono);font-size:11px;color:var(--green);}
+.nav-pill::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 1.8s ease infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.nav-dl{display:flex;gap:10px;}
+.nav-btn{display:flex;align-items:center;gap:7px;padding:8px 18px;border-radius:9px;font-family:var(--font);font-size:13px;font-weight:600;cursor:pointer;border:none;text-decoration:none;transition:all .2s;}
+.nb-android{background:var(--coral);color:#fff;box-shadow:0 0 20px rgba(255,114,94,0.3);}
+.nb-android:hover{box-shadow:0 0 35px rgba(255,114,94,0.5);transform:translateY(-1px);}
+.nb-ios{background:var(--glass);border:1px solid var(--border);color:var(--white);}
+.nb-ios:hover{border-color:var(--border2);background:rgba(255,114,94,0.06);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:100px 0 60px;position:relative;overflow:hidden;}
+.hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,114,94,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,114,94,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.hero-glow{position:absolute;top:-10%;left:-15%;width:700px;height:700px;background:radial-gradient(ellipse,rgba(255,114,94,0.1) 0%,transparent 65%);pointer-events:none;}
+.hero-glow2{position:absolute;bottom:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(ellipse,rgba(34,197,94,0.07) 0%,transparent 65%);pointer-events:none;}
+.container{max-width:1140px;margin:0 auto;padding:0 24px;}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:2;}
+@media(max-width:860px){.hero-inner{grid-template-columns:1fr;text-align:center;}}
+
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,114,94,0.08);border:1px solid var(--border2);border-radius:100px;padding:6px 16px;font-family:var(--mono);font-size:11px;color:var(--coral2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px;}
+.hero h1{font-size:clamp(42px,5.5vw,68px);font-weight:800;line-height:1.06;letter-spacing:-.03em;margin-bottom:20px;}
+.hero h1 em{font-style:normal;color:transparent;background:linear-gradient(135deg,var(--coral),var(--coral2));-webkit-background-clip:text;background-clip:text;}
+.hero-sub{font-size:17px;color:var(--muted);line-height:1.7;max-width:480px;margin-bottom:40px;font-weight:300;}
+@media(max-width:860px){.hero-sub{margin:0 auto 40px;}}
+
+/* DL BUTTONS BIG */
+.dl-group{display:flex;flex-direction:column;gap:12px;max-width:340px;}
+@media(max-width:860px){.dl-group{margin:0 auto;}}
+.dl-btn{display:flex;align-items:center;gap:14px;padding:14px 22px;border-radius:14px;cursor:pointer;text-decoration:none;transition:all .22s;border:1px solid transparent;}
+.dl-btn-main{background:linear-gradient(135deg,var(--coral),#ff9460);color:#fff;box-shadow:0 4px 30px rgba(255,114,94,0.35);}
+.dl-btn-main:hover{box-shadow:0 8px 50px rgba(255,114,94,0.5);transform:translateY(-2px);}
+.dl-btn-sec{background:var(--glass);border-color:var(--border);color:var(--white);}
+.dl-btn-sec:hover{border-color:var(--border2);background:rgba(255,114,94,0.05);transform:translateY(-1px);}
+.dl-icon{font-size:26px;flex-shrink:0;}
+.dl-text{display:flex;flex-direction:column;}
+.dl-small{font-size:11px;opacity:.7;font-weight:400;letter-spacing:.04em;}
+.dl-big{font-size:16px;font-weight:700;margin-top:1px;}
+
+.hero-meta{display:flex;gap:28px;margin-top:32px;flex-wrap:wrap;}
+@media(max-width:860px){.hero-meta{justify-content:center;}}
+.hm-item{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);}
+.hm-item svg{flex-shrink:0;}
+
+/* PHONE MOCKUP */
+.phone-wrap{display:flex;justify-content:center;align-items:center;position:relative;}
+.phone-outer{width:280px;height:570px;background:linear-gradient(160deg,#1c2236,#0f1422);border:1.5px solid rgba(255,255,255,0.12);border-radius:44px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.6),0 0 60px rgba(255,114,94,0.08);overflow:hidden;}
+.phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:100px;height:28px;background:#0b0f17;border-radius:0 0 20px 20px;z-index:10;}
+.phone-screen{position:absolute;inset:0;background:var(--bg);overflow:hidden;}
+/* Fake app UI inside phone */
+.ps-statusbar{height:36px;display:flex;align-items:center;justify-content:space-between;padding:0 20px 0 20px;padding-top:8px;font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.5);}
+.ps-header{padding:6px 16px 10px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.ps-logo{font-weight:800;font-size:15px;color:var(--white);}
+.ps-logo span{color:var(--coral);}
+.ps-tagline{font-family:var(--mono);font-size:8px;color:var(--muted);margin-top:1px;}
+.ps-tabs{display:flex;gap:3px;padding:8px 12px;}
+.ps-tab{flex:1;padding:5px 0;border-radius:7px;text-align:center;font-size:9px;font-weight:600;}
+.ps-tab.active{background:var(--coral);color:#fff;}
+.ps-tab:not(.active){background:rgba(255,255,255,0.05);color:var(--muted);}
+.ps-stats{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:0 12px 8px;}
+.ps-stat{background:rgba(255,255,255,0.04);border-radius:10px;padding:8px 10px;border:1px solid rgba(255,255,255,0.06);}
+.ps-stat-lbl{font-family:var(--mono);font-size:7px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+.ps-stat-val{font-size:13px;font-weight:700;margin-top:2px;}
+.ps-coin-list{padding:0 12px;}
+.ps-coin-lbl{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;}
+.ps-coin{display:flex;align-items:center;gap:8px;padding:7px 8px;background:rgba(255,255,255,0.03);border-radius:8px;margin-bottom:5px;border:1px solid rgba(255,255,255,0.05);}
+.ps-coin-sym{font-weight:700;font-size:11px;width:28px;flex-shrink:0;}
+.ps-coin-name{font-size:9px;color:var(--muted);flex:1;}
+.ps-coin-price{font-family:var(--mono);font-size:10px;font-weight:500;}
+.ps-coin-chg{font-family:var(--mono);font-size:9px;padding:2px 5px;border-radius:4px;}
+.up{color:#22c55e;background:rgba(34,197,94,0.1);}
+.dn{color:#ef4444;background:rgba(239,68,68,0.1);}
+.ps-alert{margin:8px 12px 0;background:rgba(255,114,94,0.08);border:1px solid rgba(255,114,94,0.2);border-radius:10px;padding:8px 10px;}
+.ps-alert-head{font-family:var(--mono);font-size:8px;color:var(--coral2);margin-bottom:3px;letter-spacing:.06em;}
+.ps-alert-body{font-size:10px;color:var(--white);font-weight:500;}
+.ps-alert-time{font-family:var(--mono);font-size:8px;color:var(--muted);margin-top:2px;}
+.phone-nav-bar{position:absolute;bottom:0;left:0;right:0;height:52px;background:rgba(11,15,23,0.95);border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-around;padding:0 8px 6px;}
+.pnb-item{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:7px;color:var(--muted);padding:4px 8px;border-radius:8px;}
+.pnb-item.active{color:var(--coral);}
+.pnb-icon{font-size:14px;}
+
+/* Phone glow ring */
+.phone-ring{position:absolute;inset:-20px;border-radius:64px;border:1px solid rgba(255,114,94,0.12);animation:ring-pulse 3s ease infinite;}
+.phone-ring2{position:absolute;inset:-40px;border-radius:80px;border:1px solid rgba(255,114,94,0.06);animation:ring-pulse 3s ease infinite .8s;}
+@keyframes ring-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.01)}}
+
+/* VERSION SECTION */
+section{padding:80px 0;}
+.section-label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--coral2);margin-bottom:14px;}
+.section-title{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-.025em;line-height:1.15;margin-bottom:16px;}
+.section-desc{color:var(--muted);font-size:16px;font-weight:300;max-width:520px;line-height:1.7;}
+
+/* VERSION CARDS */
+.versions-bg{background:var(--bg2);}
+.version-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:40px;}
+.platform-toggle{display:flex;gap:4px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:4px;}
+.pt-btn{padding:7px 20px;border-radius:8px;border:none;font-family:var(--font);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:7px;}
+.pt-btn.active{background:var(--coral);color:#fff;box-shadow:0 0 18px rgba(255,114,94,0.35);}
+.pt-btn:not(.active){background:transparent;color:var(--muted);}
+.version-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
+.version-card{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:24px;transition:border-color .2s,transform .2s,box-shadow .2s;position:relative;overflow:hidden;}
+.version-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:var(--glow);}
+.version-card.latest{border-color:rgba(255,114,94,0.3);background:linear-gradient(140deg,rgba(255,114,94,0.06),var(--glass));}
+.vc-latest-badge{position:absolute;top:14px;right:14px;background:var(--coral);color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:.06em;padding:3px 10px;border-radius:100px;}
+.vc-top{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.vc-platform{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.vc-platform.android{background:rgba(255,114,94,0.12);border:1px solid rgba(255,114,94,0.2);}
+.vc-platform.ios{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);}
+.vc-info{}
+.vc-ver{font-family:var(--mono);font-size:17px;font-weight:500;color:var(--white);}
+.vc-date{font-size:12px;color:var(--muted);margin-top:2px;}
+.vc-size{font-family:var(--mono);font-size:11px;color:var(--muted);background:rgba(255,255,255,0.05);border-radius:4px;padding:2px 7px;margin-top:4px;display:inline-block;}
+.vc-changelog{margin-bottom:20px;}
+.vc-changelog-lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px;}
+.vc-notes{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.vc-notes li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:rgba(242,245,255,0.75);}
+.vc-notes li::before{content:'▸';color:var(--coral2);font-size:11px;flex-shrink:0;margin-top:2px;}
+.vc-dl-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:11px;border-radius:10px;border:none;font-family:var(--font);font-weight:700;font-size:14px;cursor:pointer;text-decoration:none;transition:all .2s;}
+.vc-dl-main{background:linear-gradient(135deg,var(--coral),#ff9460);color:#fff;box-shadow:0 0 20px rgba(255,114,94,0.25);}
+.vc-dl-main:hover{box-shadow:0 0 35px rgba(255,114,94,0.45);transform:translateY(-1px);}
+.vc-dl-sec{background:var(--glass);border:1px solid var(--border);color:var(--white);}
+.vc-dl-sec:hover{border-color:var(--border2);}
+
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;}
+@media(max-width:860px){.features-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.features-grid{grid-template-columns:1fr;}}
+.feat{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:26px 22px;transition:border-color .2s,transform .2s;}
+.feat:hover{border-color:var(--border2);transform:translateY(-3px);}
+.feat-icon{font-size:28px;margin-bottom:14px;}
+.feat h3{font-size:16px;font-weight:700;margin-bottom:8px;}
+.feat p{font-size:13px;color:var(--muted);line-height:1.6;}
+
+/* REVIEWS */
+.reviews-bg{background:var(--bg2);}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;}
+@media(max-width:760px){.reviews-grid{grid-template-columns:1fr;}}
+.review-card{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:24px;}
+.rc-stars{color:#f59e0b;font-size:14px;letter-spacing:2px;margin-bottom:12px;}
+.rc-text{font-size:14px;color:rgba(242,245,255,0.8);line-height:1.65;margin-bottom:16px;font-style:italic;}
+.rc-author{display:flex;align-items:center;gap:10px;}
+.rc-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff;flex-shrink:0;}
+.rc-name{font-size:14px;font-weight:600;}
+.rc-role{font-size:12px;color:var(--muted);}
+
+/* FINAL CTA */
+.cta-section{text-align:center;padding:100px 0;position:relative;overflow:hidden;}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(255,114,94,0.08) 0%,transparent 65%);pointer-events:none;}
+.cta-section h2{font-size:clamp(36px,5vw,58px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:18px;}
+.cta-section h2 span{color:transparent;background:linear-gradient(135deg,var(--coral),var(--coral2));-webkit-background-clip:text;background-clip:text;}
+.cta-section p{color:var(--muted);font-size:17px;max-width:440px;margin:0 auto 40px;font-weight:300;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px 0 28px;}
+.footer-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+.footer-logo{font-weight:800;font-size:18px;}
+.footer-logo span{color:var(--coral);}
+.footer-note{font-family:var(--mono);font-size:11px;color:rgba(136,146,170,0.4);}
+.footer-links{display:flex;gap:22px;}
+.footer-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--coral2);}
+
+/* ANIM */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.fu{animation:fadeUp .6s ease both;}
+.d1{animation-delay:.08s}.d2{animation-delay:.18s}.d3{animation-delay:.28s}.d4{animation-delay:.38s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-in">
+    <div class="logo">
+      <div class="logo-img">
+        <img src="data:image/png;base64,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" alt="CryptoIQ Icon">
+      </div>
+      <div class="logo-text">Crypto<span>IQ</span></div>
+    </div>
+    <div class="nav-pill">v1.0 · Now Live</div>
+    <div class="nav-dl">
+      <a href="6a0e191b4ba6a7b10515b12c.apk" download class="nav-btn nb-android">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341A5.5 5.5 0 0 1 6.5 15.5H6a6 6 0 0 1 12 0h-.477zM8.5 6.5l-1.5-2.5M15.5 6.5l1.5-2.5M3 9h18v9a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V9z"/></svg>
+        Android
+      </a>
+      <a href="6a0e191b4ba6a7b10515b12c.zip" download class="nav-btn nb-ios"> iOS</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <!-- Left -->
+      <div>
+        <div class="hero-badge fu">📡 Intelligence Platform · Version 1.0</div>
+        <h1 class="fu d1">Your Crypto<br><em>Intelligence</em><br>In Your Pocket</h1>
+        <p class="hero-sub fu d2">Track live prices, discover free airdrops, stay ahead with AI-powered news — all in one sleek app. Free forever.</p>
+
+        <div class="dl-group fu d3">
+          <a href="6a0e191b4ba6a7b10515b12c.apk" download class="dl-btn dl-btn-main">
+            <div class="dl-icon">🤖</div>
+            <div class="dl-text">
+              <span class="dl-small">Download for</span>
+              <span class="dl-big">Android APK</span>
+            </div>
+          </a>
+          <a href="6a0e191b4ba6a7b10515b12c.zip" download class="dl-btn dl-btn-sec">
+            <div class="dl-icon"></div>
+            <div class="dl-text">
+              <span class="dl-small">Download for</span>
+              <span class="dl-big">iOS (Sideload)</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="hero-meta fu d4">
+          <div class="hm-item">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Free to download
+          </div>
+          <div class="hm-item">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            No credit card
+          </div>
+          <div class="hm-item">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            400+ coins tracked
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone mockup -->
+      <div class="phone-wrap fu d2">
+        <div class="phone-ring"></div>
+        <div class="phone-ring2"></div>
+        <div class="phone-outer">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="ps-statusbar"><span>9:41</span><span>●●● ▲</span></div>
+            <div class="ps-header">
+              <div class="ps-logo">Crypto<span>IQ</span></div>
+              <div class="ps-tagline">Intelligence Platform · LIVE</div>
+            </div>
+            <div class="ps-tabs">
+              <div class="ps-tab active">Prices</div>
+              <div class="ps-tab">Airdrops</div>
+              <div class="ps-tab">News</div>
+              <div class="ps-tab">Dash</div>
+            </div>
+            <div class="ps-stats">
+              <div class="ps-stat">
+                <div class="ps-stat-lbl">Market Cap</div>
+                <div class="ps-stat-val" style="color:var(--green)">.41T</div>
+              </div>
+              <div class="ps-stat">
+                <div class="ps-stat-lbl">BTC Dom</div>
+                <div class="ps-stat-val">52.3%</div>
+              </div>
+            </div>
+            <div class="ps-coin-list">
+              <div class="ps-coin-lbl">Top Movers</div>
+              <div class="ps-coin">
+                <span class="ps-coin-sym" style="color:#f7931a">BTC</span>
+                <span class="ps-coin-name">Bitcoin</span>
+                <span class="ps-coin-price">7,412</span>
+                <span class="ps-coin-chg up">+2.1%</span>
+              </div>
+              <div class="ps-coin">
+                <span class="ps-coin-sym" style="color:#627eea">ETH</span>
+                <span class="ps-coin-name">Ethereum</span>
+                <span class="ps-coin-price">,512</span>
+                <span class="ps-coin-chg up">+1.9%</span>
+              </div>
+              <div class="ps-coin">
+                <span class="ps-coin-sym" style="color:#9945ff">SOL</span>
+                <span class="ps-coin-name">Solana</span>
+                <span class="ps-coin-price">86</span>
+                <span class="ps-coin-chg up">+4.3%</span>
+              </div>
+              <div class="ps-coin">
+                <span class="ps-coin-sym" style="color:#f3ba2f">BNB</span>
+                <span class="ps-coin-name">BNB</span>
+                <span class="ps-coin-price">98</span>
+                <span class="ps-coin-chg dn">-0.5%</span>
+              </div>
+            </div>
+            <div class="ps-alert">
+              <div class="ps-alert-head">🪂 NEW AIRDROP DETECTED</div>
+              <div class="ps-alert-body">LayerZero — Claim now. Est. value $80–$400</div>
+              <div class="ps-alert-time">Just now · Free · Low risk</div>
+            </div>
+          </div>
+          <div class="phone-nav-bar">
+            <div class="pnb-item active"><div class="pnb-icon">📈</div><span>Prices</span></div>
+            <div class="pnb-item"><div class="pnb-icon">🪂</div><span>Drops</span></div>
+            <div class="pnb-item"><div class="pnb-icon">📰</div><span>News</span></div>
+            <div class="pnb-item"><div class="pnb-icon">🗂️</div><span>Dash</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERSION HISTORY -->
+<section class="versions-bg" id="versions">
+  <div class="container">
+    <div class="version-header">
+      <div>
+        <div class="section-label">Download Center</div>
+        <div class="section-title" style="margin-bottom:0;">App Versions</div>
+      </div>
+      <div class="platform-toggle">
+        <button class="pt-btn active" onclick="filterVersions('all',this)">🌐 All</button>
+        <button class="pt-btn" onclick="filterVersions('android',this)">🤖 Android</button>
+        <button class="pt-btn" onclick="filterVersions('ios',this)"> iOS</button>
+      </div>
+    </div>
+
+    <div class="version-grid" id="versionGrid">
+
+      <!-- v1.0 Android (LATEST) -->
+      <div class="version-card latest" data-platform="android">
+        <div class="vc-latest-badge">Latest</div>
+        <div class="vc-top">
+          <div class="vc-platform android">🤖</div>
+          <div class="vc-info">
+            <div class="vc-ver">v1.0.0</div>
+            <div class="vc-date">20 May 2026</div>
+            <div class="vc-size">11 MB · Android APK</div>
+          </div>
+        </div>
+        <div class="vc-changelog">
+          <div class="vc-changelog-lbl">What's New</div>
+          <ul class="vc-notes">
+            <li>Initial public release</li>
+            <li>Live prices for 400+ coins via CoinGecko</li>
+            <li>Airdrop tracker with step-by-step guides</li>
+            <li>AI-generated news via Groq / Llama</li>
+            <li>Portfolio tracker with price alerts</li>
+            <li>Firebase Auth (Google + email)</li>
+          </ul>
+        </div>
+        <a href="6a0e191b4ba6a7b10515b12c.apk" download class="vc-dl-btn vc-dl-main">
+          ⬇ Download Android APK
+        </a>
+      </div>
+
+      <!-- v1.0 iOS (LATEST) -->
+      <div class="version-card latest" data-platform="ios">
+        <div class="vc-latest-badge">Latest</div>
+        <div class="vc-top">
+          <div class="vc-platform ios"></div>
+          <div class="vc-info">
+            <div class="vc-ver">v1.0.0</div>
+            <div class="vc-date">20 May 2026</div>
+            <div class="vc-size">21 MB · iOS IPA (.zip)</div>
+          </div>
+        </div>
+        <div class="vc-changelog">
+          <div class="vc-changelog-lbl">What's New</div>
+          <ul class="vc-notes">
+            <li>Initial public release</li>
+            <li>All features from Android v1.0</li>
+            <li>Built with WebToNative for iOS</li>
+            <li>Firebase integration (Auth + Firestore)</li>
+            <li>Sideload via AltStore or similar</li>
+            <li>Optimised for iPhone 12 and above</li>
+          </ul>
+        </div>
+        <a href="6a0e191b4ba6a7b10515b12c.zip" download class="vc-dl-btn vc-dl-main">
+          ⬇ Download iOS IPA
+        </a>
+      </div>
+
+      <!-- Placeholder previous Android version -->
+      <div class="version-card" data-platform="android" style="opacity:.6;">
+        <div class="vc-top">
+          <div class="vc-platform android">🤖</div>
+          <div class="vc-info">
+            <div class="vc-ver">v0.9.2 <span style="font-size:11px;color:var(--muted)">(Beta)</span></div>
+            <div class="vc-date">02 May 2026</div>
+            <div class="vc-size">10.4 MB · Android APK</div>
+          </div>
+        </div>
+        <div class="vc-changelog">
+          <div class="vc-changelog-lbl">Changes</div>
+          <ul class="vc-notes">
+            <li>Fixed infinite scroll on Prices tab</li>
+            <li>Resolved Firebase auth race condition</li>
+            <li>NewsAPI + CryptoPanic fallback logic</li>
+            <li>AdSense ad slot integration</li>
+          </ul>
+        </div>
+        <div class="vc-dl-btn vc-dl-sec" style="cursor:default;">Archived — Use v1.0</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="section-label">What's Inside</div>
+    <div class="section-title">Everything You Need<br>To Stay Ahead</div>
+    <div class="features-grid">
+      <div class="feat">
+        <div class="feat-icon">📈</div>
+        <h3>Live Price Tracking</h3>
+        <p>Real-time data on 400+ coins with sparkline charts, 24h changes, and market cap rankings.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🪂</div>
+        <h3>Free Airdrop Alerts</h3>
+        <p>Curated daily airdrop listings with step-by-step claim guides. Never miss a legitimate free token.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🧠</div>
+        <h3>AI-Powered News</h3>
+        <p>Groq AI reviews and generates market news. Community articles with automatic quality checks.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">💼</div>
+        <h3>Portfolio Tracker</h3>
+        <p>Add your holdings and track real-time P&L. Set custom price alerts for instant notifications.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🔐</div>
+        <h3>Secure Auth</h3>
+        <p>Sign in via Google or email, secured with reCAPTCHA v3 and Firebase Authentication.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">📊</div>
+        <h3>Market Pulse</h3>
+        <p>Fear & Greed index, Bitcoin dominance, altcoin season index — all refreshed in real time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-bg" id="reviews">
+  <div class="container">
+    <div class="section-label">User Reviews</div>
+    <div class="section-title">What Traders Are Saying</div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="rc-stars">★★★★★</div>
+        <div class="rc-text">"CryptoIQ is the only platform I check every morning. The live prices and airdrop alerts have saved me hours of research every week."</div>
+        <div class="rc-author">
+          <div class="rc-avatar" style="background:linear-gradient(135deg,#ff725e,#ff9a8b)">AK</div>
+          <div>
+            <div class="rc-name">Alex K.</div>
+            <div class="rc-role">DeFi Trader · Lagos</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="rc-stars">★★★★★</div>
+        <div class="rc-text">"Found three legitimate airdrops worth over $200 last month just from this app. The step-by-step claim guides make it incredibly easy."</div>
+        <div class="rc-author">
+          <div class="rc-avatar" style="background:linear-gradient(135deg,#22c55e,#16a34a)">SM</div>
+          <div>
+            <div class="rc-name">Sarah M.</div>
+            <div class="rc-role">Crypto Enthusiast · Nairobi</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="rc-stars">★★★★☆</div>
+        <div class="rc-text">"The portfolio tracker and price alerts are exactly what I needed. The AI news review system is surprisingly accurate for a free app."</div>
+        <div class="rc-author">
+          <div class="rc-avatar" style="background:linear-gradient(135deg,#3b82f6,#6366f1)">JO</div>
+          <div>
+            <div class="rc-name">James O.</div>
+            <div class="rc-role">Retail Investor · Abuja</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section" id="download">
+  <div class="container">
+    <h2>Your edge starts<br><span>right here.</span></h2>
+    <p>Download the app and stay on top of the market — free, always.</p>
+    <div class="cta-btns">
+      <a href="6a0e191b4ba6a7b10515b12c.apk" download class="dl-btn dl-btn-main" style="max-width:260px;">
+        <div class="dl-icon">🤖</div>
+        <div class="dl-text">
+          <span class="dl-small">Download for</span>
+          <span class="dl-big">Android APK</span>
+        </div>
+      </a>
+      <a href="6a0e191b4ba6a7b10515b12c.zip" download class="dl-btn dl-btn-sec" style="max-width:260px;">
+        <div class="dl-icon"></div>
+        <div class="dl-text">
+          <span class="dl-small">Download for</span>
+          <span class="dl-big">iOS IPA</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-in">
+      <div>
+        <div class="footer-logo">Crypto<span>IQ</span></div>
+        <div class="footer-note" style="margin-top:6px;">© 2026 CryptoIQ · Not financial advice.</div>
+      </div>
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#versions">Versions</a>
+        <a href="#reviews">Reviews</a>
+        <a href="https://cryptoxradar.netlify.app" target="_blank">Web App</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function filterVersions(platform, btn) {
+  document.querySelectorAll('.pt-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.version-card').forEach(card => {
+    if (platform === 'all' || card.dataset.platform === platform) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// Scroll reveal
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.version-card, .feat, .review-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity .5s ease, transform .5s ease';
+  io.observe(el);
+});
+</script>
+</body>
+</html>
